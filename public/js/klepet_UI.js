@@ -87,6 +87,14 @@ $(document).ready(function() {
         $('#seznam-kanalov').append(divElementEnostavniTekst(kanal));
       }
     }
+    
+  socket.on('dregljaj', function(odgovor) {
+    if (odgovor.dregljaj) {
+      $("#vsebina").jrumble();
+      $("#vsebina").trigger('startRumble');
+      setTimeout(function() {$("#vsebina").trigger('stopRumble')}, 1500);
+    }
+  });
 
     $('#seznam-kanalov div').click(function() {
       klepetApp.procesirajUkaz('/pridruzitev ' + $(this).text());
